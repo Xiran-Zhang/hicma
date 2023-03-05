@@ -132,6 +132,21 @@ extern "C" {
             double *CD,
             int LDC
             );
+
+
+void HCORE_zcompress( int m, int n,
+        double *AU,
+        double *AV,
+        double *AD,
+        double *Ark,
+        int lda,
+        int ldu,
+        int ldv,
+        int bigM, int ii, int jj,
+        int maxrank, double tol, int compress_diag,
+        double *Dense
+        );
+
 #ifdef __cplusplus
 }
 #endif

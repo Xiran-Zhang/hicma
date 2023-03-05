@@ -76,4 +76,13 @@ void hicma_pztrsmd(MORSE_enum side, MORSE_enum uplo, MORSE_enum trans, MORSE_enu
         MORSE_desc_t *Bdense,
         int maxrk,
         MORSE_sequence_t *sequence, MORSE_request_t *request);
+
+void hicma_pzcompress(
+        MORSE_desc_t *Dense,
+        int maxrank, double tol,
+        int compress_diag,
+        MORSE_desc_t *AUV,
+        MORSE_desc_t *AD,
+        MORSE_desc_t *Ark,
+        MORSE_sequence_t *sequence, MORSE_request_t *request );
 #endif

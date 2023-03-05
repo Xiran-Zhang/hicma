@@ -130,6 +130,36 @@ extern "C" {
             double beta,  
             const MORSE_desc_t *CD, 
             int Cm, int Cn, int ldc);
+
+
+void HICMA_TASK_zcompress_diag( const MORSE_option_t *options,
+                        int m, int n,
+                        const MORSE_desc_t *AUV,
+                        const MORSE_desc_t *AD, int ADm, int ADn,
+                        const MORSE_desc_t *Ark,
+                        int Am, int An,
+                        int lda,
+                        int ldu,
+                        int ldv,
+                        int bigM, int m0, int n0,
+                        int maxrank, double tol,
+                        int compress_diag,
+                        const MORSE_desc_t *Dense
+                        );
+void HICMA_TASK_zcompress( const MORSE_option_t *options,
+                        int m, int n,
+                        const MORSE_desc_t *AUV,
+                        const MORSE_desc_t *Ark,
+                        int Am, int An,
+                        int lda,
+                        int ldu,
+                        int ldv,
+                        int bigM, int m0, int n0,
+                        int maxrank, double tol,
+                        int compress_diag,
+                        const MORSE_desc_t *Dense
+                        );
+
 #ifdef __cplusplus
 }
 #endif
