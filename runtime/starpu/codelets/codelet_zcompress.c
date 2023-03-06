@@ -19,7 +19,7 @@
 #include "hcore_z.h"
 
 #include "runtime/starpu/runtime_codelets.h"
-ZCODELETS_HEADER(gytlr)
+ZCODELETS_HEADER(compress)
 
 
 //CHAMELEON_CL_CB(zgytlr,        starpu_matrix_get_nx(task->handles[0]), starpu_matrix_get_ny(task->handles[0]), 0,                                                M*N)
@@ -39,6 +39,7 @@ void HICMA_TASK_zcompress( const MORSE_option_t *options,
                         const MORSE_desc_t *Dense
                         )
 {
+    //fprintf(stderr, "At HICMA_TASK_zcompress\n");
     struct starpu_codelet *codelet = &cl_zcompress;
     //void (*callback)(void*) = options->profiling ? cl_zgytlr_callback : NULL;
     void (*callback)(void*) = NULL;
@@ -95,7 +96,6 @@ static void cl_zcompress_cpu_func(void *descr[], void *cl_arg)
     int bigM;
     int m0;
     int n0;
-    unsigned long long int seed;
     int maxrank;
     double tol;
     int compress_diag;
@@ -105,7 +105,7 @@ static void cl_zcompress_cpu_func(void *descr[], void *cl_arg)
     Dense = (double *)STARPU_MATRIX_GET_PTR(descr[2]);
 
 
-    starpu_codelet_unpack_args(cl_arg, &m, &n, &nAUV, &lda, &ldu, &ldv, &bigM, &m0, &n0, &seed, &maxrank, &tol, &compress_diag );
+    starpu_codelet_unpack_args(cl_arg, &m, &n, &nAUV, &lda, &ldu, &ldv, &bigM, &m0, &n0, &maxrank, &tol, &compress_diag );
 
     double *AU = AUV;
     int nAU = nAUV/2;

@@ -61,6 +61,7 @@ void HCORE_zcompress( int m, int n, /*dimension of squareAD*/
         double *Dense
         )
 {
+    //fprintf(stderr, "At HCORE_zcompress\n\n");
     if(compress_tile_ii >= 0) {
         ii = compress_tile_ii;
         printf("%s %d: Using fixed i:%d\n", __FILE__, __LINE__, ii);
@@ -70,21 +71,23 @@ void HCORE_zcompress( int m, int n, /*dimension of squareAD*/
         printf("%s %d: Using fixed j:%d\n", __FILE__, __LINE__, jj);
     }
     int64_t i, j;
-    //printf("m:%d n:%d bigM:%d m0:%d n0:%d\n", m, n, bigM, m0, n0);
+    //fprintf(stderr, "m:%d n:%d bigM:%d\n", m, n, bigM);
     struct timeval tvalBefore, tvalAfter;  // removed comma
     gettimeofday (&tvalBefore, NULL);
     if(print_index){
         fprintf(stderr, "%d+GYTLR\t|(%d,%d) m:%d n:%d lda:%d ldu:%d ldv:%d\n",MORSE_My_Mpi_Rank(), ii, jj, m, n, lda, ldu, ldv);
     }
 
+
     int shape[2];
     int rank = 0;
     int oversample = 10;
     double *work;
     int *iwork;
-    STARSH_cluster *RC = mpiF->row_cluster, *CC = RC;
-    void *RD = RC->data, *CD = RD;
+    //STARSH_cluster *RC = mpiF->row_cluster, *CC = RC;
+    //void RD = RC->data, *CD = RD;
     double *saveAD;
+
                                                     // allocate space for dense tile
     if((ii != jj && store_only_diagonal_tiles == 1) // if tile is off diagonal and
                                                     // and only diagonal tiles are stored in a tall and skinny matrix
@@ -99,8 +102,10 @@ void HCORE_zcompress( int m, int n, /*dimension of squareAD*/
     }
     //starsh_blrf_get_block(mpiF, ii, jj, shape, &AD);
 
-    mpiF->problem->kernel(m, n, RC->pivot+RC->start[ii], CC->pivot+CC->start[jj],
-            RD, CD, AD, lda);
+    //mpiF->problem->kernel(m, n, RC->pivot+RC->start[ii], CC->pivot+CC->start[jj],
+    //        RD, CD, AD, lda);
+    char cpy_all = 'A';
+    LAPACK_dlacpy(&cpy_all, &m, &n, Dense, &lda, AD, &lda);
 
 /*    {*/
         /*if (ii != jj || compress_diag == 1) { */

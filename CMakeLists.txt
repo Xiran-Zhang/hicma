@@ -1268,6 +1268,7 @@ SET( HICMA_HCORE_SRC
     ${CMAKE_SOURCE_DIR}/hcore/compute/hcore_zhagcm.c
     ${CMAKE_SOURCE_DIR}/hcore/compute/hcore_zhagdm.c
     ${CMAKE_SOURCE_DIR}/hcore/compute/hcore_zgytlr.c
+    ${CMAKE_SOURCE_DIR}/hcore/compute/hcore_zcompress.c
     ${CMAKE_SOURCE_DIR}/hcore/compute/hcore_zsyrk.c
     ${CMAKE_SOURCE_DIR}/hcore/compute/hcore_zgemm_fast.c
     ${CMAKE_SOURCE_DIR}/hcore/compute/hcore_zgemm.c
@@ -1286,6 +1287,8 @@ set( HICMA_COMPUTE_SRC
     ${CMAKE_SOURCE_DIR}/compute/zhagdm.c
     ${CMAKE_SOURCE_DIR}/compute/pzgytlr.c
     ${CMAKE_SOURCE_DIR}/compute/zgytlr.c
+    ${CMAKE_SOURCE_DIR}/compute/pzcompress.c
+    ${CMAKE_SOURCE_DIR}/compute/zcompress.c
     ${CMAKE_SOURCE_DIR}/compute/pzpotrf.c
     ${CMAKE_SOURCE_DIR}/compute/zpotrf.c
     ${CMAKE_SOURCE_DIR}/compute/pzgemm.c
@@ -1308,10 +1311,12 @@ set( HICMA_RUNTIME_SRC
     ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_zgemm.c
     ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_zgemm_bdcd.c
     ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_zgytlr.c
+    ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_zcompress.c
     ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_zpotrf.c
     ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_ztrsm.c
     ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_zsyrk.c
     ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_zgytlr_diag.c
+    ${CMAKE_SOURCE_DIR}/runtime/starpu/codelets/codelet_zcompress_diag.c
   )
 
 set( HICMA_AUX_SRC

@@ -117,7 +117,7 @@ void hicma_pzcompress(
                 Ark,
                 m, n, 
                 ldamD, 0, 0,
-                A->m, m*A->mb, n*A->mb, seed,
+                A->m, m*A->mb, n*A->mb,
                 maxrank, tol,
                 compress_diag,
                 Dense
@@ -131,7 +131,7 @@ void hicma_pzcompress(
                 Ark,
                 m, n, 
                 ldamD, ldamUV, ldamUV,
-                A->m, m*A->mb, n*A->mb, seed,
+                A->m, m*A->mb, n*A->mb,
                 maxrank, tol,
                 compress_diag,
                 Dense

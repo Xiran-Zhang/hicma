@@ -40,6 +40,7 @@ void HICMA_TASK_zcompress_diag( const MORSE_option_t *options,
                         const MORSE_desc_t *Dense
                         )
 {
+    //fprintf(stderr, "At HICMA_TASK_zcompress_diag\n");
     struct starpu_codelet *codelet = &cl_zcompressdiag;
     //void (*callback)(void*) = options->profiling ? cl_zgytlr_callback : NULL;
     void (*callback)(void*) = NULL;
@@ -109,7 +110,7 @@ static void cl_zcompress_cpu_func(void *descr[], void *cl_arg)
     Dense = (double *)STARPU_MATRIX_GET_PTR(descr[3]);
 
 
-    starpu_codelet_unpack_args(cl_arg, &m, &n, &nAUV, &lda, &ldu, &ldv, &bigM, &m0, &n0, &seed, &maxrank, &tol, &compress_diag );
+    starpu_codelet_unpack_args(cl_arg, &m, &n, &nAUV, &lda, &ldu, &ldv, &bigM, &m0, &n0, &maxrank, &tol, &compress_diag );
 
     double *AU = AUV;
     int nAU = nAUV/2;
@@ -134,4 +135,4 @@ static void cl_zcompress_cpu_func(void *descr[], void *cl_arg)
 /*
  * Codelet definition
  */
-CODELETS_CPU(compressdiag, 4, cl_zcompress_cpu_func)
+CODELETS_CPU(zcompressdiag, 4, cl_zcompress_cpu_func)
