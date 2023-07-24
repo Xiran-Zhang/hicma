@@ -162,7 +162,7 @@ void HCORE_zcompress( int m, int n, /*dimension of squareAD*/
         if(rank == -1){ //means that tile is dense.
             rank = m;
             fprintf(stderr, "%s %s %d: Dense off-diagonal block (%d,%d)\n", __FILE__, __func__, __LINE__, ii, jj);
-            exit(0);
+            exit(-2);
         }
         Ark[0] = rank;
         if(store_only_diagonal_tiles == 1) {
